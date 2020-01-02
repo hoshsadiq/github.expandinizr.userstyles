@@ -1,0 +1,51 @@
+diff --git a/gulpfile.js b/gulpfile.js
+index 087e2cd..b3ad619 100644
+--- a/gulpfile.js
++++ b/gulpfile.js
+@@ -24,12 +24,9 @@ gulp.task('clean', function () {
+
+ gulp.task('styles', function () {
+   return gulp.src('./src/*.less')
+-    .pipe(sourcemaps.init())
+     .pipe(less())
+-    .pipe(cleanCSS())
+-    .pipe(sourcemaps.write())
+     .pipe(rename({ suffix: '.min' }))
+-    .pipe(gulp.dest('./ext/content'))
++    .pipe(gulp.dest('./build'))
+ })
+
+ gulp.task('html', function () {
+diff --git a/src/gist-inject.less b/src/gist-inject.less
+index b65f121..d9c9d4f 100644
+--- a/src/gist-inject.less
++++ b/src/gist-inject.less
+@@ -1,5 +1,6 @@
+ @import "includes/breakpoints";
+
++@-moz-document domain("gist.github.com") {
+ .ruleset(@breakpoint) {
+     .width(@width) {
+         width: @breakpoint - @width !important
+@@ -35,3 +36,4 @@
+       .ruleset(@xlg-breakpoint);
+   }
+ }
++}
+diff --git a/src/github-inject.less b/src/github-inject.less
+index d1c3258..a46a7e5 100644
+--- a/src/github-inject.less
++++ b/src/github-inject.less
+@@ -1,4 +1,5 @@
+ @import "includes/breakpoints";
++@-moz-document domain("github.com") {
+ .ruleset(@breakpoint) {
+     .width(@width) {
+         width: @breakpoint - @width  !important
+@@ -138,4 +139,5 @@
+     @media (min-width: @xlg-breakpoint) {
+         .ruleset(@xlg-breakpoint);
+     }
++}
+ }
+\ No newline at end of file
