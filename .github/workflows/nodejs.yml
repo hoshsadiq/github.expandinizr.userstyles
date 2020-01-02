@@ -1,6 +1,10 @@
 name: Node CI
 
-on: [push]
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+    - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 env:
   EXPANDINIZR_DIR: /home/runner/work/github.expandinizr.userstyles/github.expandinizr.userstyles/lessstyles
 
@@ -15,6 +19,7 @@ jobs:
       with:
         repository: thecodejunkie/github.expandinizr
         path: ${{ env.EXPANDINIZR_DIR }}
+        ref: ${{ github.ref }}
     - name: Use Node.js 10.x
       uses: actions/setup-node@v1
       with:
