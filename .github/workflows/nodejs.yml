@@ -2,7 +2,7 @@ name: Node CI
 
 on: [push]
 env:
-  EXPANDINIZR_DIR: /tmp/github.expandinizr
+  EXPANDINIZR_DIR: /home/runner/work/github.expandinizr.userstyles/github.expandinizr.userstyles/lessstyles
 
 jobs:
   build:
