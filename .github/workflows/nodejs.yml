@@ -9,10 +9,11 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
+    - run: pwd
     - uses: actions/checkout@v2
     - uses: actions/checkout@v2
       with:
-        repository: 'https://github.com/thecodejunkie/github.expandinizr.git'
+        repository: thecodejunkie/github.expandinizr
         path:  ${{ env.EXPANDINIZR_DIR }}
     - name: Use Node.js 10.x
       uses: actions/setup-node@v1
