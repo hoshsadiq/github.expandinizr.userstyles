@@ -23,7 +23,7 @@ jobs:
       run: |
         npm install -g gulp
         npm install -C ${{ env.EXPANDINIZR_DIR }}
-        git -C ${{ env.EXPANDINIZR_DIR }} apply userstyles.patch
+        git -C ${{ env.EXPANDINIZR_DIR }} apply $PWD/userstyles.patch
         gulp styles --cwd github.expandinizr
         ls -la ${{ env.EXPANDINIZR_DIR }}
       env:
