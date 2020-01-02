@@ -14,7 +14,7 @@ jobs:
     - uses: actions/checkout@v2
       with:
         repository: thecodejunkie/github.expandinizr
-        path:  ${{ env.EXPANDINIZR_DIR }}
+        path: ${{ env.EXPANDINIZR_DIR }}
     - name: Use Node.js 10.x
       uses: actions/setup-node@v1
       with:
@@ -24,7 +24,7 @@ jobs:
         npm install -C ${{ env.EXPANDINIZR_DIR }}
         npm install -g gulp
         git -C ${{ env.EXPANDINIZR_DIR }} apply $PWD/userstyles.patch
-        gulp styles --cwd github.expandinizr
+        gulp styles --cwd ${{ env.EXPANDINIZR_DIR }}
         ls -la ${{ env.EXPANDINIZR_DIR }}
       env:
         CI: true
