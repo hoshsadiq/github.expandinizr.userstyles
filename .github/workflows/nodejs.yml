@@ -21,8 +21,8 @@ jobs:
         node-version: 10.x
     - name: npm install
       run: |
-        npm install -g gulp
         npm install -C ${{ env.EXPANDINIZR_DIR }}
+        npm install -g gulp
         git -C ${{ env.EXPANDINIZR_DIR }} apply $PWD/userstyles.patch
         gulp styles --cwd github.expandinizr
         ls -la ${{ env.EXPANDINIZR_DIR }}
