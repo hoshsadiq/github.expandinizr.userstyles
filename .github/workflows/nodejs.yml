@@ -25,6 +25,36 @@ jobs:
         npm install -g gulp
         git -C ${{ env.EXPANDINIZR_DIR }} apply $PWD/userstyles.patch
         gulp styles --cwd ${{ env.EXPANDINIZR_DIR }}
-        ls -la ${{ env.EXPANDINIZR_DIR }}
+        ls -la ${{ env.EXPANDINIZR_DIR }}/build
       env:
         CI: true
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1.0.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+
+    - name: Upload Release Asset
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ${{ env.EXPANDINIZR_DIR }}/build/gist-inject.min.css
+        asset_name: github-gist.user.css
+        asset_content_type: text/css
+
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ${{ env.EXPANDINIZR_DIR }}/build/github-inject.min.css
+        asset_name: github.user.css
+        asset_content_type: text/css
