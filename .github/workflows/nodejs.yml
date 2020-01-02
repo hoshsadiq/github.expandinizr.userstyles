@@ -1,0 +1,29 @@
+name: Node CI
+
+on: [push]
+env:
+  EXPANDINIZR_DIR: /tmp/github.expandinizr
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/checkout@v2
+      with:
+        repository: 'https://github.com/thecodejunkie/github.expandinizr.git'
+        path:  ${{ env.EXPANDINIZR_DIR }}
+    - name: Use Node.js 10.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 10.x
+    - name: npm install
+      run: |
+        npm install -g gulp
+        npm install -C ${{ env.EXPANDINIZR_DIR }}
+        git -C ${{ env.EXPANDINIZR_DIR }} apply usertyles.patch
+        gulp styles --cwd github.expandinizr
+        ls -la ${{ env.EXPANDINIZR_DIR }}
+      env:
+        CI: true
