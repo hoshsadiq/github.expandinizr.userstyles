@@ -1,0 +1,18 @@
+/* ==UserStyle==
+@name        expandinizr
+@namespace   thecodejunkie
+@version     {env.GITHUB_REF}
+@homepageURL https://github.com/thecodejunkie/github.expandinizr
+@updateURL   https://github.com/hoshsadiq/github.expandinizr.userstyles/releases/latest/download/github.user.css
+@license     MIT
+@author      thecodejunkie
+==/UserStyle== */
+
+@-moz-document domain("github.com") {
+@import (multiple) "./github.expandinizr/src/github-inject.less";
+}
+
+@-moz-document domain("gist.github.com") {
+@import (multiple) "github.expandinizr/src/includes/breakpoints";
+@import "./github.expandinizr/src/gist-inject.less";
+}

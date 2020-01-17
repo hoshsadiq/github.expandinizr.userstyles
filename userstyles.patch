@@ -1,71 +1,35 @@
-diff --git i/gulpfile.js w/gulpfile.js
-index 087e2cd..b3ad619 100644
---- i/gulpfile.js
-+++ w/gulpfile.js
-@@ -24,12 +24,9 @@ gulp.task('clean', function () {
+diff --git a/src/gist-inject.less b/src/gist-inject.less
+index b65f121..9eb014e 100644
+--- a/src/gist-inject.less
++++ b/src/gist-inject.less
+@@ -22,7 +22,6 @@
+     }
+ }
  
- gulp.task('styles', function () {
-   return gulp.src('./src/*.less')
--    .pipe(sourcemaps.init())
-     .pipe(less())
--    .pipe(cleanCSS())
--    .pipe(sourcemaps.write())
-     .pipe(rename({ suffix: '.min' }))
--    .pipe(gulp.dest('./ext/content'))
-+    .pipe(gulp.dest('./build'))
- })
- 
- gulp.task('html', function () {
-diff --git i/src/gist-inject.less w/src/gist-inject.less
-index b65f121..9f4a155 100644
---- i/src/gist-inject.less
-+++ w/src/gist-inject.less
-@@ -1,5 +1,15 @@
- @import "includes/breakpoints";
--
-+/* ==UserStyle==
-+@name        expandinizr
-+@namespace   thecodejunkie
-+@version     1.2.0
-+@homepageURL https://github.com/thecodejunkie/github.expandinizr
-+@updateURL   https://github.com/hoshsadiq/github.expandinizr.userstyles/releases/latest/download/github-gist.user.css
-+@license     MIT
-+@author      thecodejunkie
-+==/UserStyle== */
-+
-+@-moz-document domain("gist.github.com") {
- .ruleset(@breakpoint) {
-     .width(@width) {
-         width: @breakpoint - @width !important
-@@ -35,3 +45,4 @@
+-.expandinizr {
+   @media (min-width: @md-breakpoint) {
+       .ruleset(@md-breakpoint);
+   }
+@@ -34,4 +33,3 @@
+   @media (min-width: @xlg-breakpoint) {
        .ruleset(@xlg-breakpoint);
    }
+-}
+diff --git a/src/github-inject.less b/src/github-inject.less
+index d1c3258..6ffe449 100644
+--- a/src/github-inject.less
++++ b/src/github-inject.less
+@@ -96,7 +96,6 @@
+     }
  }
-+}
-diff --git i/src/github-inject.less w/src/github-inject.less
-index d1c3258..bdbcd71 100644
---- i/src/github-inject.less
-+++ w/src/github-inject.less
-@@ -1,4 +1,14 @@
- @import "includes/breakpoints";
-+/* ==UserStyle==
-+@name        expandinizr
-+@namespace   thecodejunkie
-+@version     1.2.0
-+@homepageURL https://github.com/thecodejunkie/github.expandinizr
-+@updateURL   https://github.com/hoshsadiq/github.expandinizr.userstyles/releases/latest/download/github-gist.user.css
-+@license     MIT
-+@author      thecodejunkie
-+==/UserStyle== */
-+@-moz-document domain("github.com") {
- .ruleset(@breakpoint) {
-     .width(@width) {
-         width: @breakpoint - @width  !important
-@@ -138,4 +148,5 @@
+ 
+-.expandinizr {
+     .css-truncate-button a {
+         color: gray;
+         margin-right: 5px;
+@@ -138,4 +137,3 @@
      @media (min-width: @xlg-breakpoint) {
          .ruleset(@xlg-breakpoint);
      }
 -}
 \ No newline at end of file
-+}
-+}
