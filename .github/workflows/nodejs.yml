@@ -33,7 +33,7 @@ jobs:
 
         npm install -C ${{ env.EXPANDINIZR_DIR }}
 
-        git -C ${{ env.EXPANDINIZR_DIR }} apply $PWD/userstyles.patch
+        patch -p1 -d ${{ env.EXPANDINIZR_DIR }} -i $PWD/userstyles.patch
 
         gulp styles
 
